@@ -16,7 +16,13 @@ const loginUser = async (req, res) => {
         // create a token
         const token = createToken(user._id);
 
-        res.status(200).json({ email, token })
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header(
+            'Access-Control-Allow-Origin', 
+            'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+        );
+        res.status(200).json({ email, token });
+        
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
